@@ -20,7 +20,6 @@ public class Main {
 		String theString = "oups!";
 		InputStream is = request.raw().getPart("uploaded_file").getInputStream();
 		return IOUtils.toString(myInputStream, "UTF-8");
-		 theString;
 	});
   }
 }
