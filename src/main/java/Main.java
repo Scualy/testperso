@@ -48,8 +48,8 @@ public class Main {
         });
 
     }
-	private static String parseToHTMLUsingApacheTikka(String file)
-			throws IOException, SAXException, TikaException {
+	private static String parseToHTMLUsingApacheTikka(String file){
+		//	throws IOException, SAXException, TikaException {
 		// determine extension
 		String ext = FilenameUtils.getExtension(file);
 		String outputFileFormat = "";
