@@ -49,7 +49,7 @@ public class Main {
         });
 
     }
-	private static File parseToHTMLUsingApacheTikka(String file)
+	private static string parseToHTMLUsingApacheTikka(String file,InputStream is)
 			throws IOException, SAXException, TikaException {
 		// determine extension
 		String ext = FilenameUtils.getExtension(file);
@@ -77,11 +77,7 @@ public class Main {
 		Metadata metadata = new Metadata();
 		try {
 			parser.parse(stream, handler, metadata);
-			FileWriter htmlFileWriter = new FileWriter(OUTPUT_FILE_NAME);
-			htmlFileWriter.write(handler.toString());
-			htmlFileWriter.flush();
-			htmlFileWriter.close();
-			return new File(OUTPUT_FILE_NAME);
+			return handler.toString();
 		} finally {
 			stream.close();
 		}
