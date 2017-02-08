@@ -32,10 +32,16 @@ public class Main {
 		request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/tmp"));
 		String theString = "oups!";
 
-
-		try (InputStream is = request.raw().getPart("uploaded_file").getInputStream()) {
+		InputStream is = null;
+		Part = request.raw().getPart("uploaded_file");
+		
+		is = Part.getInputStream();
+		/*try (is = request.raw().getPart("uploaded_file").getInputStream()) {
 			//
 		}
+		try (InputStream is = request.raw().getPart("uploaded_file").getInputStream()) { // getPart needs to use same "name" as input field in form
+                Files.copy(input, tempFile, StandardCopyOption.REPLACE_EXISTING);
+            }*/
 /*
 		//return IOUtils.toString(is, "UTF-8");
 		StringBuilder textBuilder = new StringBuilder();
