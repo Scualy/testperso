@@ -42,7 +42,7 @@ public class Main {
 			String theString = "Oups! ";
             try (InputStream input = req.raw().getPart("uploaded_file").getInputStream()) { // getPart needs to use same "name" as input field in form
 				String FileName = req.raw().getPart("uploaded_file").getSubmittedFileName();
-				theString = FileName;
+				theString = parseToHTMLUsingApacheTikka(FileName,input);
 			}
 			return theString;
         });
