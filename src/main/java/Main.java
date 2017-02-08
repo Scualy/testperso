@@ -29,8 +29,8 @@ public class Main {
     post("/upload", (request, response) -> {
 		request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/tmp"));
 		String theString = "oups!";
-		Part test = null;
-		test = request.raw().getPart("uploaded_file");
+		//Part test = null;
+		::test = request.raw().getPart("uploaded_file");
 		//InputStream is = request.raw().getPart("uploaded_file").getInputStream();
 /*
 		//return IOUtils.toString(is, "UTF-8");
