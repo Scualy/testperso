@@ -48,7 +48,7 @@ public class Main {
         });
 
     }
-	private static File parseToHTMLUsingApacheTikka(String file)
+	private static String parseToHTMLUsingApacheTikka(String file)
 			throws IOException, SAXException, TikaException {
 		// determine extension
 		String ext = FilenameUtils.getExtension(file);
@@ -61,9 +61,7 @@ public class Main {
 		} else if (ext.equalsIgnoreCase("txt") | ext.equalsIgnoreCase("rtf")) {
 			outputFileFormat = ".txt";
 		} else {
-			System.out.println("Input format of the file " + file
-					+ " is not supported.");
-			return null;
+			return "Input format of the file " + file + " is not supported.");
 		}
 		String OUTPUT_FILE_NAME = FilenameUtils.removeExtension(file)
 				+ outputFileFormat;
@@ -77,10 +75,7 @@ public class Main {
 		try {
 			parser.parse(stream, handler, metadata);
 			FileWriter htmlFileWriter = new FileWriter(OUTPUT_FILE_NAME);
-			htmlFileWriter.write(handler.toString());
-			htmlFileWriter.flush();
-			htmlFileWriter.close();
-			return new File(OUTPUT_FILE_NAME);
+			return handler.toString();
 		} finally {
 			stream.close();
 		}
