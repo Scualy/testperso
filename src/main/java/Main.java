@@ -1,3 +1,7 @@
+import java.io.InputStream;
+import java.io.IOException; 
+import java.net.URL; 
+import java.util.List; 
 import static spark.Spark.*;
 
 public class Main {
@@ -15,8 +19,8 @@ public class Main {
 		request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
 		String theString = "oups!";
 		InputStream is = request.raw().getPart("uploaded_file").getInputStream();
-		theString = IOUtils.toString(myInputStream, "UTF-8");
-		return theString;
+		return IOUtils.toString(myInputStream, "UTF-8");
+		 theString;
 	});
   }
 }
