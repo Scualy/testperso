@@ -24,12 +24,50 @@ public class Main {
             req.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
 			String theString = "Oups! ";
             try (InputStream input = req.raw().getPart("uploaded_file").getInputStream()) { // getPart needs to use same "name" as input field in form
-				theString = req.raw().getPart("uploaded_file").getSubmittedFileName();
+				String FileName = req.raw().getPart("uploaded_file").getSubmittedFileName();
+				theString = FileName;
 			}
 			return theString;
         });
 
     }
+	private static File parseToHTMLUsingApacheTikka(String file)
+			throws IOException, SAXException, TikaException {
+		// determine extension
+		String ext = FilenameUtils.getExtension(file);
+		String outputFileFormat = "";
+		// ContentHandler handler;
+		if (ext.equalsIgnoreCase("html") | ext.equalsIgnoreCase("pdf")
+				| ext.equalsIgnoreCase("doc") | ext.equalsIgnoreCase("docx")) {
+			outputFileFormat = ".html";
+			// handler = new ToXMLContentHandler();
+		} else if (ext.equalsIgnoreCase("txt") | ext.equalsIgnoreCase("rtf")) {
+			outputFileFormat = ".txt";
+		} else {
+			System.out.println("Input format of the file " + file
+					+ " is not supported.");
+			return null;
+		}
+		String OUTPUT_FILE_NAME = FilenameUtils.removeExtension(file)
+				+ outputFileFormat;
+		ContentHandler handler = new ToXMLContentHandler();
+		// ContentHandler handler = new BodyContentHandler();
+		// ContentHandler handler = new BodyContentHandler(
+		// new ToXMLContentHandler());
+		InputStream stream = new FileInputStream(file);
+		AutoDetectParser parser = new AutoDetectParser();
+		Metadata metadata = new Metadata();
+		try {
+			parser.parse(stream, handler, metadata);
+			FileWriter htmlFileWriter = new FileWriter(OUTPUT_FILE_NAME);
+			htmlFileWriter.write(handler.toString());
+			htmlFileWriter.flush();
+			htmlFileWriter.close();
+			return new File(OUTPUT_FILE_NAME);
+		} finally {
+			stream.close();
+		}
+	}
 }
 
 
