@@ -49,7 +49,7 @@ public class Main {
         });
 
     }
-	private static string parseToHTMLUsingApacheTikka(String file,InputStream is)
+	private static string parseToHTMLUsingApacheTikka(String file)
 			throws IOException, SAXException, TikaException {
 		// determine extension
 		String ext = FilenameUtils.getExtension(file);
