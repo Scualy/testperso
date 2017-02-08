@@ -64,15 +64,10 @@ public class Main {
 		}
 
 		ContentHandler handler = new ToXMLContentHandler();
-
 		AutoDetectParser parser = new AutoDetectParser();
 		Metadata metadata = new Metadata();
-		try {
-			parser.parse(stream, handler, metadata);
-			return handler.toString();
-		} finally {
-			stream.close();
-		}
+		parser.parse(stream, handler, metadata);
+		return handler.toString();
 	}
 }
 
