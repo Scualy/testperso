@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
 import java.nio.file.*;
-import org.apache.commons.*;
+import com.google.common.io.CharStreams;
 import static spark.Spark.*;
 
 public class Main {
@@ -24,7 +24,14 @@ public class Main {
             req.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
 			String theString = "Oups!";
             try (InputStream input = req.raw().getPart("uploaded_file").getInputStream()) { // getPart needs to use same "name" as input field in form
-				return IOUtils.toString(input, "UTF-8");
+				StringBuilder textBuilder = new StringBuilder();
+				try (Reader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"))) {
+					int c = 0;
+					while ((c = reader.read()) != -1) {
+						textBuilder.append((char) c);
+					}
+					theString = textBuilder.toString();
+				}
 			}
 			return theString;
         });
@@ -81,7 +88,7 @@ public class Main {
 /*
 		//return IOUtils.toString(is, "UTF-8");
 		StringBuilder textBuilder = new StringBuilder();
-		try (Reader reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName(StandardCharsets.UTF_8.name())))) {
+		try (Reader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"))) {
 			int c = 0;
 			while ((c = reader.read()) != -1) {
 				textBuilder.append((char) c);
