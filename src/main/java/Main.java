@@ -1,8 +1,11 @@
-import javax.servlet.MultipartConfigElement;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.ServletRegistration;
+import spark.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
+import java.nio.file.*;
+import static spark.Spark.*;
+import static spark.debug.DebugScreen.*;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,8 +16,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.List;
-import static spark.Spark.*;
+
 
 public class Main {
 
@@ -30,9 +32,11 @@ public class Main {
     post("/upload", (request, response) -> {
 		request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/tmp"));
 		String theString = "oups!";
-		//Part test = null;
-		//test = request.raw().getPart("uploaded_file");
-		//InputStream is = request.raw().getPart("uploaded_file").getInputStream();
+
+
+		try (InputStream is = request.raw().getPart("uploaded_file").getInputStream()) {
+			//
+		}
 /*
 		//return IOUtils.toString(is, "UTF-8");
 		StringBuilder textBuilder = new StringBuilder();
