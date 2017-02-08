@@ -4,7 +4,6 @@ import javax.servlet.http.*;
 import java.io.*;
 import java.nio.file.*;
 import static spark.Spark.*;
-import static spark.debug.DebugScreen.*;
 
 import java.io.File;
 import java.io.FileInputStream;
