@@ -10,16 +10,13 @@ public class Main {
 		"\t<input type='file' name='uploaded_file'/>\n"+
 		"\t<input type='submit' value='Envoyer'/>\n"+
 		"\t</form>\n");
-
+	});
     post("/upload", (request, response) -> {
 		request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
-			String theString = "oups!"
-			try (InputStream is = request.raw().getPart("uploaded_file").getInputStream()) {
-				theString = IOUtils.toString(myInputStream, "UTF-8");
-			}
-			return theString;
-		});
-
+		String theString = "oups!"
+		InputStream is = request.raw().getPart("uploaded_file").getInputStream();
+		theString = IOUtils.toString(myInputStream, "UTF-8");
+		return theString;
+	});
   }
-
 }
