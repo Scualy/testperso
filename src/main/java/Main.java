@@ -6,7 +6,7 @@ import java.io.*;
 import java.nio.file.*;
 import static spark.Spark.*;
 
-public class main {
+public class Main {
 
     public static void main(String[] args) {
 
