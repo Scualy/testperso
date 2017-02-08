@@ -21,7 +21,7 @@ public class Main {
         post("/upload", (req, res) -> {
 
             req.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
-			String theString = "Oups!"
+			String theString = "Oups!";
             try (InputStream input = req.raw().getPart("uploaded_file").getInputStream()) { // getPart needs to use same "name" as input field in form
                 StringBuilder textBuilder = new StringBuilder();
 				try (Reader reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName(StandardCharsets.UTF_8.name())))) {
@@ -31,7 +31,6 @@ public class Main {
 					}
 					theString = textBuilder.toString();
 				}
-            
 			}
 			return theString;
         });
