@@ -61,7 +61,7 @@ public class Main {
 		} else if (ext.equalsIgnoreCase("txt") | ext.equalsIgnoreCase("rtf")) {
 			outputFileFormat = ".txt";
 		} else {
-			return "Input format of the file " + file + " is not supported.");
+			return "Input format of the file " + file + " is not supported.";
 		}
 		String OUTPUT_FILE_NAME = FilenameUtils.removeExtension(file)
 				+ outputFileFormat;
