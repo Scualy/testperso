@@ -48,7 +48,7 @@ public class Main {
         });
 
     }
-	private static String parseToHTMLUsingApacheTikka(String file){
+	private static String parseToHTMLUsingApacheTikka(String file,InputStream stream){
 		//	throws IOException, SAXException, TikaException {
 		// determine extension
 		String ext = FilenameUtils.getExtension(file);
@@ -63,18 +63,11 @@ public class Main {
 		} else {
 			return "Input format of the file " + file + " is not supported.";
 		}
-		String OUTPUT_FILE_NAME = FilenameUtils.removeExtension(file)
-				+ outputFileFormat;
-		ContentHandler handler = new ToXMLContentHandler();
-		// ContentHandler handler = new BodyContentHandler();
-		// ContentHandler handler = new BodyContentHandler(
-		// new ToXMLContentHandler());
-		InputStream stream = new FileInputStream(file);
+
 		AutoDetectParser parser = new AutoDetectParser();
 		Metadata metadata = new Metadata();
 		try {
 			parser.parse(stream, handler, metadata);
-			FileWriter htmlFileWriter = new FileWriter(OUTPUT_FILE_NAME);
 			return handler.toString();
 		} finally {
 			stream.close();
