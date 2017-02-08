@@ -57,17 +57,19 @@ public class Main {
 		if (ext.equalsIgnoreCase("html") | ext.equalsIgnoreCase("pdf")
 				| ext.equalsIgnoreCase("doc") | ext.equalsIgnoreCase("docx")) {
 			outputFileFormat = ".html";
-			// handler = new ToXMLContentHandler();
 		} else if (ext.equalsIgnoreCase("txt") | ext.equalsIgnoreCase("rtf")) {
 			outputFileFormat = ".txt";
 		} else {
 			return "Input format of the file " + file + " is not supported.";
 		}
 
+		ContentHandler handler = new ToXMLContentHandler();
+
 		AutoDetectParser parser = new AutoDetectParser();
 		Metadata metadata = new Metadata();
 		try {
 			parser.parse(stream, handler, metadata);
+			FileWriter htmlFileWriter = new FileWriter(OUTPUT_FILE_NAME);
 			return handler.toString();
 		} finally {
 			stream.close();
