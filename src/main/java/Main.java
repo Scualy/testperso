@@ -22,7 +22,6 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
-
 import static spark.Spark.*;
 
 public class Main {
@@ -49,7 +48,7 @@ public class Main {
         });
 
     }
-	private static string parseToHTMLUsingApacheTikka(String file)
+	private static File parseToHTMLUsingApacheTikka(String file)
 			throws IOException, SAXException, TikaException {
 		// determine extension
 		String ext = FilenameUtils.getExtension(file);
@@ -77,7 +76,11 @@ public class Main {
 		Metadata metadata = new Metadata();
 		try {
 			parser.parse(stream, handler, metadata);
-			return handler.toString();
+			FileWriter htmlFileWriter = new FileWriter(OUTPUT_FILE_NAME);
+			htmlFileWriter.write(handler.toString());
+			htmlFileWriter.flush();
+			htmlFileWriter.close();
+			return new File(OUTPUT_FILE_NAME);
 		} finally {
 			stream.close();
 		}
