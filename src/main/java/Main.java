@@ -21,11 +21,19 @@ public class Main {
         post("/upload", (req, res) -> {
 
             req.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
-
+			String theString = "Oups!"
             try (InputStream input = req.raw().getPart("uploaded_file").getInputStream()) { // getPart needs to use same "name" as input field in form
-                //Files.copy(input, tempFile, StandardCopyOption.REPLACE_EXISTING);
-            }
-            return "<h1>You uploaded this image:<h1><img src='";
+                StringBuilder textBuilder = new StringBuilder();
+				try (Reader reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName(StandardCharsets.UTF_8.name())))) {
+					int c = 0;
+					while ((c = reader.read()) != -1) {
+						textBuilder.append((char) c);
+					}
+					theString = textBuilder.toString();
+				}
+            
+			}
+			return theString;
         });
 
     }
