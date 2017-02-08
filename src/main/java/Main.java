@@ -85,7 +85,7 @@ public class Main {
 				textBuilder.append((char) c);
 			}
 			theString = textBuilder.toString();
-		}*/
+		}
 		return theString;
 	});
   }
