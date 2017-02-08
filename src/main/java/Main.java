@@ -24,7 +24,7 @@ public class Main {
             req.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
 			String theString = "Oups! ";
             try (InputStream input = req.raw().getPart("uploaded_file").getInputStream()) { // getPart needs to use same "name" as input field in form
-				theString+ = req.raw().getPart("uploaded_file").getSubmittedFileName();
+				theString = req.raw().getPart("uploaded_file").getSubmittedFileName();
 			}
 			return theString;
         });
