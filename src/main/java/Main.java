@@ -69,7 +69,6 @@ public class Main {
 		Metadata metadata = new Metadata();
 		try {
 			parser.parse(stream, handler, metadata);
-			FileWriter htmlFileWriter = new FileWriter(OUTPUT_FILE_NAME);
 			return handler.toString();
 		} finally {
 			stream.close();
