@@ -10,14 +10,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-        get("/", (req, res) ->
-                  "<form method='post' enctype='multipart/form-data'>" // note the enctype
-                + "    <input type='file' name='uploaded_file' accept='.png'>" // make sure to call getPart using the same "name" in the post
-                + "    <button>Upload picture</button>"
-                + "</form>"
-        );
+	port(Integer.valueOf(System.getenv("PORT")));
+		get("/", (req, res) -> {
+		return "<form action='/upload' method='post' enctype='multipart/form-data'>\n"+
+		"\t<input type='file' name='uploaded_file'/>\n"+
+		"\t<input type='submit' value='Envoyer'/>\n"+
+		"\t</form>\n";
+	});
 
-        post("/", (req, res) -> {
+        post("/upload", (req, res) -> {
 
             req.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
 
