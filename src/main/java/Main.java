@@ -29,7 +29,7 @@ public class Main {
 		request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/tmp"));
 		String theString = "oups!";
 		InputStream is = request.raw().getPart("uploaded_file").getInputStream();
-
+/*
 		//return IOUtils.toString(is, "UTF-8");
 		StringBuilder textBuilder = new StringBuilder();
 		try (Reader reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName(StandardCharsets.UTF_8.name())))) {
@@ -38,7 +38,7 @@ public class Main {
 				textBuilder.append((char) c);
 			}
 			theString = textBuilder.toString();
-		}
+		}*/
 		return theString;
 	});
   }
