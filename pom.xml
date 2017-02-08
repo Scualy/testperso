@@ -8,15 +8,20 @@
   <artifactId>helloworld</artifactId>
   <dependencies>
 	<dependency>
-		<groupId>javax.servlet</groupId>
-		<artifactId>servlet-api</artifactId>
-		<version>2.4</version>
-		</dependency>
-    <dependency>
-	  <groupId>com.sparkjava</groupId>
-	  <artifactId>spark-core</artifactId>
-	  <version>2.5.5</version>
-    </dependency>
+		<groupId>com.sparkjava</groupId>
+		<artifactId>spark-core</artifactId>
+		<version>2.5</version>
+	</dependency>
+	<dependency>
+		<groupId>com.sparkjava</groupId>
+		<artifactId>spark-debug-tools</artifactId>
+		<version>0.5</version>
+	</dependency>
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-simple</artifactId>
+		<version>1.7.13</version>
+	</dependency>
   </dependencies>
   <build>
     <plugins>
