@@ -22,7 +22,7 @@ public class Main {
 		request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
 		String theString = "oups!";
 		InputStream is = request.raw().getPart("uploaded_file").getInputStream();
-		return IOUtils.toString(myInputStream, "UTF-8");
+		return IOUtils.toString(is, "UTF-8");
 	});
   }
 }
