@@ -13,7 +13,7 @@ public class Main {
 	});
     post("/upload", (request, response) -> {
 		request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
-		String theString = "oups!"
+		String theString = "oups!";
 		InputStream is = request.raw().getPart("uploaded_file").getInputStream();
 		theString = IOUtils.toString(myInputStream, "UTF-8");
 		return theString;
