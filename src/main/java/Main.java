@@ -5,6 +5,8 @@ import javax.servlet.http.*;
 import java.io.*;
 import java.nio.file.*;
 import com.google.common.io.CharStreams;
+import java.net.URL;
+import java.util.HashSet;
 
 import org.apache.tika.config.TikaConfig;
 import org.apache.tika.detect.Detector;
