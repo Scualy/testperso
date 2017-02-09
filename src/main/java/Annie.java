@@ -1,5 +1,3 @@
-package code4goal.antony.resumeparser;
-
 import java.util.*;
 import java.io.*;
 import java.net.*;
