@@ -63,6 +63,8 @@ public class Main {
             try (InputStream input = req.raw().getPart("uploaded_file").getInputStream()) { // getPart needs to use same "name" as input field in form
 				String FileName = req.raw().getPart("uploaded_file").getSubmittedFileName();
 				theString = parseToHTMLUsingApacheTikka(FileName,input);
+				JSONObject parsedJSON = loadGateAndAnnie(theString);
+				return parsedJSON.toJSONString();
 			}
 			return theString;
         });
