@@ -62,7 +62,9 @@ public class Main {
 			String theString = "Oups! ";
             try (InputStream input = req.raw().getPart("uploaded_file").getInputStream()) { // getPart needs to use same "name" as input field in form
 				String FileName = req.raw().getPart("uploaded_file").getSubmittedFileName();
+				System.out.println("## FileName > "+FileName);
 				theString = parseToHTMLUsingApacheTikka(FileName,input);
+				System.out.println("## parse > "+theString.left(20));
 				JSONObject parsedJSON = loadGateAndAnnie(theString);
 				return parsedJSON.toJSONString();
 			}
@@ -100,7 +102,7 @@ public class Main {
 		// initialise ANNIE (this may take several minutes)
 		Annie annie = new Annie();
 		annie.initAnnie();
-
+		System.out.println("## initAnnie > OK");
 		// create a GATE corpus and add a document for each command-line
 		// argument
 		/*Corpus corpus = Factory.newCorpus("Annie corpus");
