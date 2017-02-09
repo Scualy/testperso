@@ -66,7 +66,7 @@ public class Main {
 				JSONObject parsedJSON = loadGateAndAnnie(theString);
 				return parsedJSON.toJSONString();
 			}
-			return theString;
+			//return theString;
         });
 
     }
