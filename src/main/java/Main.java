@@ -7,6 +7,9 @@ import java.nio.file.*;
 import com.google.common.io.CharStreams;
 import java.net.URL;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 import org.apache.tika.config.TikaConfig;
 import org.apache.tika.detect.Detector;
@@ -86,7 +89,7 @@ public class Main {
 		return handler.toString();
 	}
 	
-	public static JSONObject loadGateAndAnnie(File file) throws GateException,
+	public static JSONObject loadGateAndAnnie(String Content) throws GateException,
 			IOException {
 		Out.prln("Initialising basic system...");
 		Gate.init();
@@ -98,7 +101,7 @@ public class Main {
 
 		// create a GATE corpus and add a document for each command-line
 		// argument
-		Corpus corpus = Factory.newCorpus("Annie corpus");
+		/*Corpus corpus = Factory.newCorpus("Annie corpus");
 		String current = new File(".").getAbsolutePath();
 		URL u = file.toURI().toURL();
 		FeatureMap params = Factory.newFeatureMap();
@@ -106,10 +109,12 @@ public class Main {
 		params.put("preserveOriginalContent", new Boolean(true));
 		params.put("collectRepositioningInfo", new Boolean(true));
 		Out.prln("Creating doc for " + u);
-		Document resume = (Document) Factory.createResource(
-				"gate.corpora.DocumentImpl", params);
+		Document resume = (Document) Factory.createResource("gate.corpora.DocumentImpl", params);
+		
 		corpus.add(resume);
-
+		*/
+		Corpus corpus = Factory.newCorpus("Annie corpus");
+		corpus.add(Factory.newDocument(Content));
 		// tell the pipeline about the corpus and run it
 		annie.setCorpus(corpus);
 		annie.execute();
